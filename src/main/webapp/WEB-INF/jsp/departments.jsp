@@ -29,7 +29,7 @@
 
     <button type="submit">Apply</button>
 <br><br>
-
+</form>
     <a href="/departments/create" class="btn">Create Department</a>
 
 
@@ -63,5 +63,3 @@
     <a href="?page=${page + 1}&size=${size}&search=${search}&active=${active}&sort=${sort}">
         Next
     </a>
-
-</form>

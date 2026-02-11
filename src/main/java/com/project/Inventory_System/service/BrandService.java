@@ -97,6 +97,25 @@ public class BrandService {
     }
 
 
+    public List<BrandResponseDTO> getAllBrands(){
+
+        return brandRepository.findAll()
+                .stream()
+                .map(brand -> {
+                    BrandResponseDTO dto = new BrandResponseDTO();
+                    dto.setId(brand.getId());
+                    dto.setName(brand.getName());
+
+                    if(brand.getParent() != null) {
+                        dto.setParentId(brand.getParent().getId());
+                        dto.setParentName(brand.getParent().getName());
+                    }
+                    dto.setActive(brand.getIsActive());
+                    return dto;
+                }).toList();
+    }
+
+
 
     private Comparator<Brand> getComparator(String sortBy) {
 

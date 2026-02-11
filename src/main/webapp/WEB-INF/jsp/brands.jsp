@@ -32,6 +32,13 @@
 
     <br><br>
 
+</form>
+
+    <a href="/brand/create">
+        <button>Create Brand</button>
+    </a>
+
+    <br>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -67,4 +74,3 @@
     <a href="?page=${page + 1}&size=${size}&search=${search}&departmentId=${departmentId}&active=${active}&sort=${sort}">
         Next
     </a>
-</form>

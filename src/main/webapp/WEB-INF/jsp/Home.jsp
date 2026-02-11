@@ -10,6 +10,6 @@
 <ul>
     <li><a href="/departments">Manage Departments</a></li>
     <li><a href="/categories">Manage Categories</a></li>
-    <li><a href="/brands">Manage Brands</a></li>
+    <li><a href="/brand">Manage Brands</a></li>
 
 </ul>

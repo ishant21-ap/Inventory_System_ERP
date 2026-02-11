@@ -10,7 +10,7 @@
 <body>
 
 <h2>Category Datatable</h2>
-<form method="get" action="/category">
+<form method="get" action="/categories">
     Search :
     <input type="text" name="search" value="${search}" />
 
@@ -42,6 +42,14 @@
     <button type="submit">Apply</button>
 
 </form>
+
+<br>
+<a href="/categories/create">
+    <button>Create Category</button>
+</a>
+
+<br><br>
+
 
 <table border="1" cellpadding="5" cellspacing="0">
     <tr>

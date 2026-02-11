@@ -1,19 +1,18 @@
 package com.project.Inventory_System.controller;
 
+import com.project.Inventory_System.dtos.CategoryRequestDTO;
 import com.project.Inventory_System.service.DepartmentService;
 import org.springframework.ui.Model;
 import com.project.Inventory_System.dtos.CategoryResponseDTO;
 import com.project.Inventory_System.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/category")
+@RequestMapping("/categories")
 @RequiredArgsConstructor
 public class CategoryPageController {
 
@@ -46,5 +45,24 @@ public class CategoryPageController {
 
         return "categories";
 
+    }
+
+
+    @GetMapping("/create")
+    public String showCreateCategoryPage(Model model) {
+        model.addAttribute("category", new CategoryResponseDTO());
+        model.addAttribute("departments", departmentService.getAll());
+        model.addAttribute("allCategories", categoryService.getAllCategories());
+
+        return "create-category";
+    }
+
+
+    @PostMapping("/create")
+    public String createCategory(
+            @ModelAttribute("category")CategoryRequestDTO dto
+            ){
+        categoryService.create(dto);
+        return  "redirect:/categories";
     }
 }
