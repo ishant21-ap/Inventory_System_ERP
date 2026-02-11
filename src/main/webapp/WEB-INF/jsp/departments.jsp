@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="navbar.jsp"/>
+
 
 <html>
 <head>
@@ -8,7 +10,7 @@
 <body>
 <h2>Department Datatable</h2>
 
-<form method="get" action="/departments/page">
+<form method="get" action="/departments">
     Search:
     <input type="text" name="search" value="${search}" />
     Active:
@@ -26,8 +28,12 @@
     </select>
 
     <button type="submit">Apply</button>
-<br><br><br>
+<br><br>
 
+    <a href="/departments/create" class="btn">Create Department</a>
+
+
+    <br><br>
 
     <table border="1" cellpadding="5" cellspacing="0">
         <tr>

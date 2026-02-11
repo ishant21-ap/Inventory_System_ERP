@@ -17,7 +17,7 @@ public class DepartmentPageController {
 
     private final DepartmentService departmentService;
 
-    @GetMapping("/page")
+    @GetMapping
     public String departmentPage(
             @RequestParam(required = false) String search,
             @RequestParam(required = false) Boolean active,
@@ -36,6 +36,22 @@ public class DepartmentPageController {
         model.addAttribute("sort", sort);
 
         return "departments"; // resolves to departments.jsp
+    }
+
+
+    @GetMapping("/create")
+    public String showCreateDepartmentForm(Model model) {
+        model.addAttribute("department", new DepartmentRequestDTO());
+        return "create-department";
+    }
+
+
+    @PostMapping("/create")
+    public String createDepartment(
+            @ModelAttribute("department") DepartmentRequestDTO dto
+    ){
+        departmentService.create(dto);
+        return "redirect:/departments";
     }
 }
 

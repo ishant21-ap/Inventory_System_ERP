@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="navbar.jsp"/>
+
 
 <html>
 <head>
@@ -8,7 +10,7 @@
 <body>
 
 <h2>Category Datatable</h2>
-<form method="get" action="/category/page">
+<form method="get" action="/category">
     Search :
     <input type="text" name="search" value="${search}" />
 

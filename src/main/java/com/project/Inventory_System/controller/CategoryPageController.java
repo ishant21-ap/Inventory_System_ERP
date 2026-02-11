@@ -22,7 +22,7 @@ public class CategoryPageController {
     private final DepartmentService departmentService;
 
 
-    @GetMapping("/page")
+    @GetMapping
     public String categoryPage(
             @RequestParam(required = false) String search,
             @RequestParam(required = false) Long departmentId,
