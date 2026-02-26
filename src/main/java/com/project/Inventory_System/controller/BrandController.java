@@ -7,10 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +23,11 @@ public class BrandController {
     public ResponseEntity<?> createBrand(@RequestBody @Valid BrandRequestDTO brandRequestDTO) {
         brandService.createBrand(brandRequestDTO);
         return ResponseEntity.ok("Brand Created");
+    }
+
+    @GetMapping
+    public List<BrandResponseDTO> getBrands() {
+        return brandService.getAllBrands();
     }
 
 

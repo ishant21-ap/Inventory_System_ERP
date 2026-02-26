@@ -31,16 +31,6 @@ public class DepartmentController {
     }
 
 
-    @GetMapping("/datatable")
-    public List<DepartmentResponseDTO> datatable(
-            @RequestParam(required = false) String search,
-            @RequestParam(required = false) Boolean active,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(required = false) String sort
-    ){
-        return departmentService.getDataTable(search, active, page, size, sort);
-    }
 
 
 

@@ -5,9 +5,7 @@ import com.project.Inventory_System.dtos.BrandResponseDTO;
 import com.project.Inventory_System.exceptions.BusinessException;
 import com.project.Inventory_System.models.Brand;
 import com.project.Inventory_System.repository.BrandRepository;
-import com.project.Inventory_System.util.BrandPredicateUtil;
 import jakarta.transaction.Transactional;
-import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -60,41 +58,7 @@ public class BrandService {
 
 
 
-    public List<BrandResponseDTO> getDataTable(
-            String search,
-            Boolean isActive,
-            int page,
-            int size,
-            String sortBy
-    ){
-        List<Brand> brands = brandRepository.findAll();
 
-        Predicate<Brand> predicate = BrandPredicateUtil.searchByName(search)
-                .and(BrandPredicateUtil.filterByActive(isActive));
-
-
-        Comparator<Brand> comparator = getComparator(sortBy);
-
-        int skip = page * size;
-
-        return brands.stream()
-                .filter(predicate)
-                .sorted(comparator)
-                .skip(skip)
-                .limit(size)
-                .map(brand -> {
-                    BrandResponseDTO dto = new BrandResponseDTO();
-                    dto.setId(brand.getId());
-                    dto.setName(brand.getName());
-
-                    if(brand.getParent() != null) {
-                        dto.setParentId(brand.getParent().getId());
-                        dto.setParentName(brand.getParent().getName());
-                    }
-                    dto.setActive(brand.getIsActive());
-                    return dto;
-                }).toList();
-    }
 
 
     public List<BrandResponseDTO> getAllBrands(){
@@ -117,22 +81,6 @@ public class BrandService {
 
 
 
-    private Comparator<Brand> getComparator(String sortBy) {
 
-        if (sortBy == null || sortBy.isBlank()) {
-            return Comparator.comparing(Brand::getId);
-        }
-
-        switch (sortBy) {
-            case "name_asc":
-                return Comparator.comparing(Brand::getName);
-
-            case "name_desc":
-                return Comparator.comparing(Brand::getName).reversed();
-
-            default:
-                return Comparator.comparing(Brand::getId);
-        }
-    }
 
 }
