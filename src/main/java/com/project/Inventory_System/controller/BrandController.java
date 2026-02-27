@@ -2,6 +2,9 @@ package com.project.Inventory_System.controller;
 
 import com.project.Inventory_System.dtos.BrandRequestDTO;
 import com.project.Inventory_System.dtos.BrandResponseDTO;
+import com.project.Inventory_System.dtos.DatatableRequestDTO;
+import com.project.Inventory_System.dtos.DatatableResponseDTO;
+import com.project.Inventory_System.dtos.projection.BrandDatatableProjectionDTO;
 import com.project.Inventory_System.service.BrandService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +33,14 @@ public class BrandController {
         return brandService.getAllBrands();
     }
 
+
+    @PostMapping("/datatable")
+    public DatatableResponseDTO<BrandDatatableProjectionDTO> getDatatable(@RequestBody DatatableRequestDTO datatableRequestDTO) {
+        String searchValue = datatableRequestDTO.getSearch() != null ?
+                datatableRequestDTO.getSearch().getValue() : null;
+        return brandService.getDatatable(
+                datatableRequestDTO.getDraw(), datatableRequestDTO.getLength(), datatableRequestDTO.getStart(), searchValue
+        );
+    }
 
 }

@@ -2,6 +2,8 @@ package com.project.Inventory_System.service;
 
 import com.project.Inventory_System.dtos.CategoryRequestDTO;
 import com.project.Inventory_System.dtos.CategoryResponseDTO;
+import com.project.Inventory_System.dtos.DatatableResponseDTO;
+import com.project.Inventory_System.dtos.projection.CategoryDatatableProjectionDTO;
 import com.project.Inventory_System.exceptions.BusinessException;
 import com.project.Inventory_System.models.Category;
 import com.project.Inventory_System.models.Department;
@@ -92,5 +94,33 @@ public class CategoryService {
                 })
                 .toList();
     }
+
+
+
+    public DatatableResponseDTO<CategoryDatatableProjectionDTO> getDatatable(
+            int draw, int length, int start, String search
+    ){
+        int offset = start;
+
+
+        List<CategoryDatatableProjectionDTO> data =
+                categoryRepository.fetchCategoryDatatable(search, length, offset);
+
+        long totalRecords = categoryRepository.count();
+
+        long filteredRecords = (search == null || search.isBlank()) ?
+                totalRecords : categoryRepository.countFiltered(search);
+
+
+        DatatableResponseDTO<CategoryDatatableProjectionDTO> responseDTO = new DatatableResponseDTO<>();
+        responseDTO.setDraw(draw);
+        responseDTO.setRecordsTotal(totalRecords);
+        responseDTO.setRecordsFiltered(filteredRecords);
+        responseDTO.setData(data);
+
+
+        return responseDTO;
+    }
+
 
 }

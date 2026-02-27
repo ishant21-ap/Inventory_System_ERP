@@ -1,0 +1,212 @@
+/* ===============================
+   GLOBAL
+=================================*/
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f4f6f9;
+}
+
+/* ===============================
+   NAVBAR
+=================================*/
+.navbar {
+    height: 60px;
+    background: #0f172a;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%; /* Full width */
+    z-index: 1000;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ===============================
+   SIDEBAR
+=================================*/
+.sidebar {
+    width: 240px;
+    background: #1e293b;
+
+    position: fixed;
+    top: 60px; /* Below navbar */
+    left: 0;
+    bottom: 0; /* Stretch till bottom */
+
+    padding-top: 25px;
+}
+
+/* Sidebar list reset */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 14px 25px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #cbd5e1;
+    display: block;
+    transition: 0.2s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #334155;
+    border-radius: 6px;
+    color: #ffffff;
+}
+
+/* ===============================
+   CONTENT
+=================================*/
+.content {
+    margin-top: 60px;   /* Push below navbar */
+    margin-left: 240px; /* Push right of sidebar */
+
+    padding: 30px;
+    min-height: calc(100vh - 60px);
+}
+
+/* Page title */
+.content h2 {
+    margin-top: 0;
+    color: #1e293b; /* Dark heading */
+}
+
+/* ===============================
+   CARD CONTAINER
+=================================*/
+
+.card-container {
+    display: flex; /* Horizontal layout */
+    gap: 25px; /* Space between cards */
+    flex-wrap: wrap; /* Responsive */
+    margin-top: 25px;
+}
+
+/* ===============================
+   CARD DESIGN
+=================================*/
+
+.card {
+    background: #ffffff; /* White card */
+    padding: 25px;
+    border-radius: 12px; /* Smooth rounded corners */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05); /* Soft shadow */
+    width: 260px;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover lift effect */
+.card:hover {
+    transform: translateY(-6px); /* Slight upward lift */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+}
+
+/* Card title */
+.card h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #64748b; /* Soft grey */
+    font-weight: 500;
+}
+
+/* Card number */
+.card p {
+    font-size: 32px;
+    font-weight: 700;
+    margin-top: 10px;
+    color: #3b82f6; /* Blue accent */
+}
+
+
+/* ===============================
+   PAGE HEADER (TITLE + BUTTON)
+=================================*/
+
+.page-header {
+    display: flex; /* Put title and button in same row */
+    justify-content: space-between; /* Push button to right */
+    align-items: center; /* Vertical alignment */
+    margin-bottom: 20px; /* Space below header */
+}
+
+/* Primary button styling */
+.btn-primary {
+    background-color: #3b82f6; /* Blue color */
+    color: white; /* White text */
+    padding: 8px 16px; /* Button spacing */
+    border-radius: 6px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+/* Hover effect */
+.btn-primary:hover {
+    background-color: #2563eb; /* Darker blue */
+}
+
+
+/* ===============================
+   FORM CONTAINER
+=================================*/
+
+.form-container {
+    background: white; /* White card background */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    max-width: 500px; /* Limit width */
+}
+
+/* Form group spacing */
+.form-group {
+    display: flex;
+    flex-direction: column; /* Label above input */
+    margin-bottom: 15px;
+}
+
+/* Label styling */
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+/* Input styling */
+.form-group input,
+.form-group select {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Focus effect */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #3b82f6;
+}
+
+/* Form actions (button alignment) */
+.form-actions {
+    margin-top: 10px;
+}
+
+
+
+

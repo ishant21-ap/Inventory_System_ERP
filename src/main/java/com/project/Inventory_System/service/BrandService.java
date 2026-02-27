@@ -2,6 +2,8 @@ package com.project.Inventory_System.service;
 
 import com.project.Inventory_System.dtos.BrandRequestDTO;
 import com.project.Inventory_System.dtos.BrandResponseDTO;
+import com.project.Inventory_System.dtos.DatatableResponseDTO;
+import com.project.Inventory_System.dtos.projection.BrandDatatableProjectionDTO;
 import com.project.Inventory_System.exceptions.BusinessException;
 import com.project.Inventory_System.models.Brand;
 import com.project.Inventory_System.repository.BrandRepository;
@@ -77,6 +79,30 @@ public class BrandService {
                     dto.setActive(brand.getIsActive());
                     return dto;
                 }).toList();
+    }
+
+
+
+    public DatatableResponseDTO<BrandDatatableProjectionDTO> getDatatable(
+            int draw, int length, int start, String search
+    ){
+        int offset = start;
+
+        List<BrandDatatableProjectionDTO> data =
+                brandRepository.fetchBrandDatatable(search, length, offset);
+
+        long totalRecords = brandRepository.count();
+
+        long filteredRecords = (search == null || search.isBlank()) ?
+                totalRecords : brandRepository.countFiltered(search);
+
+        DatatableResponseDTO<BrandDatatableProjectionDTO> result = new DatatableResponseDTO<>();
+        result.setDraw(draw);
+        result.setRecordsTotal(totalRecords);
+        result.setRecordsFiltered(filteredRecords);
+        result.setData(data);
+
+        return result;
     }
 
 

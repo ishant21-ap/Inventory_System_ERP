@@ -2,6 +2,9 @@ package com.project.Inventory_System.controller;
 
 import com.project.Inventory_System.dtos.CategoryRequestDTO;
 import com.project.Inventory_System.dtos.CategoryResponseDTO;
+import com.project.Inventory_System.dtos.DatatableRequestDTO;
+import com.project.Inventory_System.dtos.DatatableResponseDTO;
+import com.project.Inventory_System.dtos.projection.CategoryDatatableProjectionDTO;
 import com.project.Inventory_System.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.Getter;
@@ -36,5 +39,15 @@ public class CategoryController {
     public ResponseEntity<?> deactivateCategory(@PathVariable Long id) {
         categoryService.deactivate(id);
         return ResponseEntity.ok("Category deactivated");
+    }
+
+
+
+    @PostMapping("/datatable")
+    public DatatableResponseDTO<CategoryDatatableProjectionDTO> getDAtatable(@RequestBody DatatableRequestDTO datatableRequestDTO) {
+        String searchValue = datatableRequestDTO.getSearch() != null ?
+                datatableRequestDTO.getSearch().getValue() :  null;
+
+        return categoryService.getDatatable(datatableRequestDTO.getDraw(), datatableRequestDTO.getLength(), datatableRequestDTO.getStart(),  searchValue);
     }
 }

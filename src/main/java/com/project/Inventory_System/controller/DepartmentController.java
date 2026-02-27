@@ -1,5 +1,7 @@
 package com.project.Inventory_System.controller;
 
+import com.project.Inventory_System.dtos.DatatableRequestDTO;
+import com.project.Inventory_System.dtos.DatatableResponseDTO;
 import com.project.Inventory_System.dtos.DepartmentRequestDTO;
 import com.project.Inventory_System.dtos.DepartmentResponseDTO;
 import com.project.Inventory_System.service.DepartmentService;
@@ -31,6 +33,12 @@ public class DepartmentController {
     }
 
 
+    @PostMapping("/datatable")
+    public DatatableResponseDTO<DepartmentResponseDTO> datatable(
+            @RequestBody DatatableRequestDTO datatableRequestDTO
+    ){
+        return departmentService.getDatatable(datatableRequestDTO);
+    }
 
 
 
